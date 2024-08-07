@@ -200,7 +200,7 @@ def H_beamsplitter(current_basis_states, detuning_amount, H, energy_map):
     H.generate_onsite()
     return(H.H)
 
-def H_Beamsplitter_Correlation(current_basis_states, detuning_amount, H, energy_map):
+def H_Beamsplitter_Correlation(current_basis_states, detuning_amount, H, energy_map, correlation_others_multiplier = 3):
     '''
     Asssumption that your current correlations
     :param current_basis_states:
@@ -209,12 +209,17 @@ def H_Beamsplitter_Correlation(current_basis_states, detuning_amount, H, energy_
     :param energy_map:
     :return:
     '''
+    current_basis_states = np.array(current_basis_states)
     energy_map = copy.copy(energy_map)
     for key in energy_map.keys():
+        if key not in current_basis_states:
+            energy_map[key] = -detuning_amount * correlation_others_multiplier
+            continue
         if key not in current_basis_states[0]:
             energy_map[key] = detuning_amount / 2
             continue
         energy_map[key] = -detuning_amount / 2
+    print(energy_map)
     H.energy_mapping = energy_map
     H.generate_onsite()
     return(H.H)

@@ -30,6 +30,10 @@ def state_generation(basis_states, dictionary_excitation):
                 if basis == perm:
                     state[i] = dictionary_excitation[key]
                     continue
+    return(normalize_eigenstate(state))
+
+
+def normalize_eigenstate(state):
     norm_factor = np.dot(state.conj(), state)
     if np.round(norm_factor, 7) == 0:
         print('State is zero. Check basis/dictionary')

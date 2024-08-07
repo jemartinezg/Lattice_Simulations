@@ -31,21 +31,21 @@ initial_state = state_generation(basis_states, {'1a1b': 1, })
 print(initial_state)
 print(basis_states)
 
-eigenstates = False
-time_evolution = True
+eigenstates = True
+time_evolution = False
 Fock_Space_Measure = True  #If false, prints occupation in the basis_label spatial occupation
 t = np.linspace(0,0.0084 * 30, 500) #in us
 
 
 detuning_measurement = 30 * g
 
-Measure_currents = True
+Measure_currents = False
 current_measurements = [['1a', '1b'], ['1a', '1c'], ['1b', '2a'], ['1c', '2a']]
-analytic_currents = True
+analytic_currents = False
 
 
 skip_number = 10
-Measure_correlations = True
+Measure_correlations = False
 current_correlations = [['1a', '1b'], ['2a', '2b']]
 current_correlations = [['1a', '1c'], ['1b', '2a']]
 
@@ -210,7 +210,7 @@ if time_evolution:
         plt.xlabel('Time (us)')
         plt.ylabel('Current Correlation')
         plt.title('Analytic')
-        plt.ylim(min(Time_correlations) - 0.1, max(Time_correlations) + 0.1)
+        plt.ylim(min(Time_correlations.real) - 0.1, max(Time_correlations.real) + 0.1)
         plt.show()
 
     if Measure_correlations:

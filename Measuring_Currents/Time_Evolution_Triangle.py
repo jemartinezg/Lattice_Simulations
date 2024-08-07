@@ -13,37 +13,28 @@ plt.rcParams["savefig.dpi"] = 300
 plt.rcParams["savefig.bbox"] = 'tight'
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-basis_labels = ['1a', '1b', '2a', '2b', '3a', '3b']
+basis_labels = ['1a', '1b', '2a', '2b', '3a', '3b', '4a', '4b']
 
 g = 10 * 2 * np.pi    #In MHz and time in us
 U= 150 * 2 * np.pi
 e = 0
 
-coupling_dictionary_NN = {'aa': 3 * g, 'ba': g, 'bb': 3 * g}     # Coupling to nearest unit cell
+coupling_dictionary_NN = {'aa': -3 * g, 'ba': g, 'bb': -3 * g}     # Coupling to nearest unit cell
 coupling_dictionary_same = {'ab' : 1*g}  #Coupling within a unit cell
 coupling_periodic = {'aa': 3 * g, 'ba': g, 'bb': 3 * g}
 
-coupling_dictionary_NN = {'aa': 3 * g, 'ba': g, 'bb': 3 * g}     # Coupling to nearest unit cell
+coupling_dictionary_NN = {'aa': -3 * g, 'ba': g, 'bb': -3 * g}     # Coupling to nearest unit cell
 coupling_dictionary_same = {'ab' : g}  #Coupling within a unit cell
 coupling_periodic = False #{'aa': 3 * g, 'ba': g, 'bb': 3 * g}
 
 
 #one photon basis states
-basis_states = RecursiveBasisState(3, basis_labels, state = '')
+basis_states = RecursiveBasisState(4, basis_labels, state = '')
 values_to_see = basis_states #plot all of the photon fock states
 # initial_state = state_generation(basis_states, {'1a1a1a': (0.013690768-0j), '1a1a1b': (0.0755303879-0j), '1a1a2a': (-0.0484900235-0j), '1a1a2b': (-0.0001712278-0j), '1a1a3a': (-0.0483280617-0j), '1a1a3b': (-0.0753999194-0j), '1a1b1b': (0.0348905793-0j), '1a1b2a': (-0.0005168125-0j), '1a1b2b': (0.1487884197-0j), '1a1b3a': (-0.2808469975-0j), '1a1b3b': (-0.2752951269-0j), '1a2a2a': (-0.0483280617-0j), '1a2a2b': (-0.2808469975-0j), '1a2a3a': (0.2692711695-0j), '1a2a3b': (0.2814076211-0j), '1a2b2b': (-0.0912094311-0j), '1a2b3a': (0.2814076211-0j), '1a2b3b': (0.1498439421-0j), '1a3a3a': (-0.0484900235-0j), '1a3a3b': (-0.0005168125-0j), '1a3b3b': (0.0346072373-0j), '1b1b1b': (2.57017e-05-0j), '1b1b2a': (0.0346072373-0j), '1b1b2b': (0.04304595-0j), '1b1b3a': (-0.0912094311-0j), '1b1b3b': (-0.0432277069-0j), '1b2a2a': (-0.0753999194-0j), '1b2a2b': (-0.2752951269-0j), '1b2a3a': (0.2814076211+0j), '1b2a3b': (0.1498439421-0j), '1b2b2b': (-0.0432277069-0j), '1b2b3a': (0.1498439421-0j), '1b2b3b': (0.0005055037-0j), '1b3a3a': (-0.0001712278-0j), '1b3a3b': (0.1487884197-0j), '1b3b3b': (0.04304595-0j), '2a2a2a': (0.013690768-0j), '2a2a2b': (0.0755303879-0j), '2a2a3a': (-0.0484900235-0j), '2a2a3b': (-0.0001712278-0j), '2a2b2b': (0.0348905793-0j), '2a2b3a': (-0.0005168125-0j), '2a2b3b': (0.1487884197-0j), '2a3a3a': (-0.0483280617-0j), '2a3a3b': (-0.2808469975-0j), '2a3b3b': (-0.0912094311-0j), '2b2b2b': (2.57017e-05-0j), '2b2b3a': (0.0346072373-0j), '2b2b3b': (0.04304595-0j), '2b3a3a': (-0.0753999194-0j), '2b3a3b': (-0.2752951269-0j), '2b3b3b': (-0.0432277069-0j), '3a3a3a': (0.013690768-0j), '3a3a3b': (0.0755303879-0j), '3a3b3b': (0.0348905793-0j), '3b3b3b': (2.57017e-05-0j)}
 # )
 
-initial_state = state_generation(basis_states, {'1a1a1a': (0.003419791-0j), '1a1a1b': (-0.0350784197-0j), '1a1a2a': (0.026984962-0j), '1a1a2b': (-0.0563851854-0j), '1a1a3a': (0.0365811127-0j), '1a1a3b': (-0.0437207115-0j), '1a1b1b': (0.0472105525-0j), '1a1b2a': (-0.1679766278-0j), '1a1b2b': (0.1960077728-0j), '1a1b3a': (-0.1874666417-0j), '1a1b3b': (0.1748730329-0j), '1a2a2a': (0.0532970253-0j), '1a2a2b': (-0.246297122-0j), '1a2a3a': (0.1428828859-0j), '1a2a3b': (-0.189676589-0j), '1a2b2b': (0.0960886563-0j), '1a2b3a': (-0.2474357062-0j), '1a2b3b': (0.189676589-0j), '1a3a3a': (0.0490624119-0j), '1a3a3b': (-0.1748730329-0j), '1a3b3b': (0.0437207115-0j), '1b1b1b': (-0.0076495785-0j), '1b1b2a': (0.068539833-0j), '1b1b2b': (-0.0479331194-0j), '1b1b3a': (0.0642113212-0j), '1b1b3b': (-0.0490624119-0j), '1b2a2a': (-0.0917849155-0j), '1b2a2b': (0.272284946+0j), '1b2a3a': (-0.2261898246-0j), '1b2a3b': (0.2474357062-0j), '1b2b2b': (-0.0661675955-0j), '1b2b3a': (0.2261898246-0j), '1b2b3b': (-0.1428828859-0j), '1b3a3a': (-0.0642113212-0j), '1b3a3b': (0.1874666417-0j), '1b3b3b': (-0.0365811127-0j), '2a2a2a': (0.0168397976-0j), '2a2a2b': (-0.1211945583-0j), '2a2a3a': (0.0661675955-0j), '2a2a3b': (-0.0960886563-0j), '2a2b2b': (0.1211945583-0j), '2a2b3a': (-0.272284946-0j), '2a2b3b': (0.246297122-0j), '2a3a3a': (0.0479331194-0j), '2a3a3b': (-0.1960077728-0j), '2a3b3b': (0.0563851854-0j), '2b2b2b': (-0.0168397976-0j), '2b2b3a': (0.0917849155-0j), '2b2b3b': (-0.0532970253-0j), '2b3a3a': (-0.068539833-0j), '2b3a3b': (0.1679766278-0j), '2b3b3b': (-0.026984962-0j), '3a3a3a': (0.0076495785-0j), '3a3a3b': (-0.0472105525-0j), '3a3b3b': (0.0350784197-0j), '3b3b3b': (-0.003419791-0j)}
-)
-#
-initial_state = state_generation(basis_states, {'1a1a1a': (-0.0032112003+0j), '1a1a1b': (0.0433475961+0j), '1a1a2a': (0.0199628313+0j), '1a1a2b': (-0.066765994+0j), '1a1a3a': (-0.0198253201+0j), '1a1a3b': (0.0550693205+0j), '1a1b1b': (-0.0212696251+0j), '1a1b2a': (-0.2085663089+0j), '1a1b2b': (0.1412706272+0j), '1a1b3a': (0.2058095473+0j), '1a1b3b': (-0.1900232925+0j), '1a2a2a': (-0.0196955595+0j), '1a2a2b': (0.2874611447+0j), '1a2a3a': (0.0400525768+0j), '1a2a3b': (-0.2181433224+0j), '1a2b2b': (-0.0711188019+0j), '1a2b3a': (-0.2944885255+0j), '1a2b3b': (0.2181433224+0j), '1a3a3a': (-0.0019925123+0j), '1a3a3b': (0.1900232925+0j), '1a3b3b': (-0.0550693205+0j), '1b1b1b': (-0.0013005569+0j), '1b1b2a': (0.0524759606+0j), '1b1b2b': (0.0035349831+0j), '1b1b3a': (-0.0395866509+0j), '1b1b3b': (0.0019925123+0j), '1b2a2a': (0.0892533863+0j), '1b2a2b': (-0.2474915149+0j), '1b2a3a': (-0.1989447924+0j), '1b2a3b': (0.2944885255+0j), '1b2b2b': (0.0078866863+0j), '1b2b3a': (0.1989447924+0j), '1b2b3b': (-0.0400525768+0j), '1b3a3a': (0.0395866509+0j), '1b3a3b': (-0.2058095473+0j), '1b3b3b': (0.0198253201+0j), '2a2a2a': (0.0029470416+0j), '2a2a2b': (-0.1012503664+0j), '2a2a3a': (-0.0078866863+0j), '2a2a3b': (0.0711188019+0j), '2a2b2b': (0.1012503664+0j), '2a2b3a': (0.2474915149+0j), '2a2b3b': (-0.2874611447+0j), '2a3a3a': (-0.0035349831+0j), '2a3a3b': (-0.1412706272+0j), '2a3b3b': (0.066765994+0j), '2b2b2b': (-0.0029470416+0j), '2b2b3a': (-0.0892533863+0j), '2b2b3b': (0.0196955595+0j), '2b3a3a': (-0.0524759606+0j), '2b3a3b': (0.2085663089+0j), '2b3b3b': (-0.0199628313+0j), '3a3a3a': (0.0013005569+0j), '3a3a3b': (0.0212696251+0j), '3a3b3b': (-0.0433475961+0j), '3b3b3b': (0.0032112003+0j)}
-                                 )
-#one photon basis states
-# basis_states = RecursiveBasisState(4, basis_labels, state = '')
-# values_to_see = basis_states #plot all of the photon fock states
-# initial_state = state_generation(basis_states, {'1a2a3a4a': (1)})
-
+initial_state = 4
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,7 +54,7 @@ t = np.linspace(0,0.5, 500) #in us
 detuning_measurement = 100 * g
 
 Measure_currents = False
-analytic_currents = True
+analytic_currents = False
 
 current_measurements = [['1a', '1b'], ['2a', '2b'], ['3a', '3b']]
 # current_measurements = [['1a', '2a'], ['1b', '2b']]
@@ -71,6 +62,9 @@ current_measurements = [['1a', '1b'], ['2a', '2b'], ['3a', '3b']]
 skip_number = 5  #if 1, then do all of them. if 10, then every 10 times
 Measure_correlations = False
 analytic_correlations = True
+
+analytic_correlation_sonly = True
+
 
 current_correlations = [['1a', '1b'], ['3a', '3b']]
 # current_correlations = [['1a', '2a'], ['1b', '2b']]
@@ -104,6 +98,16 @@ correlation_Hamiltonian = copy.copy(Hamm)
 print(correlation_Hamiltonian / (2*np.pi))
 
 if time_evolution:
+    if type(initial_state) == int or type(initial_state) == float:
+        eigval, eigvect = np.linalg.eig(H.H)
+        sorted_eig = []
+        for k, val in enumerate(eigval):
+            sorted_eig.append((val, k))
+        sorted_eig.sort()
+        initial_state_vector = eigvect[:, sorted_eig[initial_state][1]]
+        initial_state = normalize_eigenstate(initial_state_vector)
+
+
     sol = odeintw(function_vector, initial_state, t, args=(Evolution_H,), full_output = 1)[0]
     sol_copy = copy.copy(sol)
     if Fock_Space_Measure:
