@@ -82,5 +82,26 @@ def Expectation_values_basis_labels(time_evolutions, labels_to_find, basis_state
         all_expectation_values[i].append(value)
     return(np.array(all_expectation_values)[:, 0])
 
+def Expectation_values_basis_labels_single_state(state, labels_to_find, basis_states):
+    all_expectation_values = [] #labels to find. within each eill be time
+    state_amplitude = (state.conj() * state).real #amplitude squared
+    for i, label in enumerate(labels_to_find):  #Which labels are you interested in? 1a or 1a1a1a specific
+        value = 0
+        if type(label) == list: #?? not sure when this would be the case
+            for j, base in enumerate(basis_states):
+                separated_base = [base[i:i + len(labels_to_find[0][0])] for i in range(0, len(base), len(labels_to_find[0][0]))]
+                count = 1
+                for ind_label in label:
+                    count *= separated_base.count(ind_label)
+                value += count * state_amplitude[j]  # Count just puts the occupation number
+        else:
+            #When you specify what to look for
+            for j, base in enumerate(basis_states):
+                separated_base = [base[i:i + len(labels_to_find[0])] for i in range(0, len(base), len(labels_to_find[0]))]
+                count = separated_base.count(label)  #ex 1a1a would count 2 for two photons
+                value += count * state_amplitude[j] #Count just puts the occupation number
+        all_expectation_values.append(value)
+    return(np.array(all_expectation_values))
+
 # photon_number = separated_list_diag.count(single)
 # return ([single_basis[i:i + self.n] for i in range(0, len(single_basis), self.n)])

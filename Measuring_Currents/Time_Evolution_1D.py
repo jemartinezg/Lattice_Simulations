@@ -15,9 +15,11 @@ basis_labels = ['1a', '1b', '1c', '2a', '2b', '2c', '3a', '3b']
 
 basis_labels = ['1a', '2a', '3a', '4a']
 basis_labels = ['1a', '2a', '3a']
+basis_labels = ['1a', '2a', '3a', '4a', '5a', '6a']
+
 
 g = -10 * 2 * np.pi    #In MHz and time in us
-U= -40 * 2 * np.pi
+U= -250 * 2 * np.pi
 e = 0
 
 coupling_dictionary_NN = {'aa': g, 'ba': g, 'bb': g}     # Coupling to nearest unit cell
@@ -25,9 +27,9 @@ coupling_dictionary_same = {'ab' : -1j*g}  #Coupling within a unit cell
 coupling_periodic = False
 
 #one photon basis states
-basis_states = RecursiveBasisState(2, basis_labels, state = '')
+basis_states = RecursiveBasisState(1, basis_labels, state = '')
 values_to_see = basis_states #plot all of the photon fock states
-initial_state = state_generation(basis_states, {'1a2a': 1})
+initial_state = state_generation(basis_states, {'1a': 1})
 # initial_state = state_generation(basis_states, {'1a1a1a': -0.5})
 
 print(initial_state)
@@ -37,7 +39,7 @@ eigenstates = False
 time_evolution = True
 Fock_Space_Measure = False  #If false, prints occupation in the basis_label spatial occupation
 t = np.linspace(0,0.025/2, 500 * 3) #in us
-t = np.linspace(0,0.5, 1000) #in us
+t = np.linspace(0,0.4, 1000) #in us
 
 
 detuning_measurement = 100 * g

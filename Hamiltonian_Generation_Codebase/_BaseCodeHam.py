@@ -175,13 +175,15 @@ class Hamiltonian:
         return (self.H)
 
 
-def RecursiveBasisState(number_of_recursive, single_basis_state, state = ''):
+def RecursiveBasisState(number_of_recursive, single_basis_state, state = '', hardcore = False):
     empty_list = []
     if number_of_recursive == 0:
         return(state)
     for i, single_element in enumerate(single_basis_state):
+        if single_element in state and hardcore:
+            continue
         mixed_state = RecursiveBasisState(number_of_recursive - 1, single_basis_state[i: ],
-                                          state + single_element)
+                                          state + single_element, hardcore = hardcore)
         if type(mixed_state) == list:
             for element in mixed_state:
                 empty_list.append(element)
